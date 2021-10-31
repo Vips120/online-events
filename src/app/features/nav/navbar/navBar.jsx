@@ -1,7 +1,7 @@
 import React from 'react';
 import logo  from '../../../../assets/deliver.jpg';
 import { Container,Menu,Button } from 'semantic-ui-react';
-const Navbar = () => {
+const Navbar = ({setFormOpen}) => {
  return(
      <>
      <Menu inverted fixed="top">
@@ -10,7 +10,9 @@ const Navbar = () => {
 <img src={logo}   alt="logo" style={{marginRight:'15px'}}/>Online Events
              </Menu.Item>
              <Menu.Item>
-                 <Button color="blue" inverted content="Create Event"/>
+                 <Button color="blue" 
+                  onClick={() => setFormOpen(true)}
+                 inverted content="Create Event"/>
              </Menu.Item>
              <Menu.Item position='right'>
               <Button primary inverted content='Login' />

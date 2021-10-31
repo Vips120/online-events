@@ -3,18 +3,18 @@ import { Segment,Item, Icon, List,Button } from 'semantic-ui-react';
 import EventListAttendee from './eventAttendee';
 import img from '../../../../assets/customer-2.jpg';
 
-const EventListItem = () => {  
+const EventListItem = ({event, selectEvent}) => {  
   return(
       <>
-       <Segment.Group>
-           <Segment>
+       <Segment.Group >
+           <Segment >
                <Item.Group>
                    <Item>
-                       <Item.Image size="tiny" circular src={img}  alt='sunil' />
+                       <Item.Image size="tiny" circular src={event.hostPhotoUrl}  alt='sunil' />
                        <Item.Content>
-                           <Item.Header content="Event Title" />
+                           <Item.Header content={event.title} />
                            <Item.Description>
-                               Hosted By Sunil
+                               Hosted By {event.hostedBy}
                            </Item.Description>
                        </Item.Content>
                    </Item>
@@ -22,26 +22,24 @@ const EventListItem = () => {
            </Segment>
            <Segment>
                <span>
-                   <Icon name="clock"/>Date
-                    <Icon name='point'/>location
+                   <Icon name="clock"/>{event.date}
+                    <Icon name='point'/>{event.address}
                </span>
            </Segment>
-           <Segment>
+           <Segment clearing>
                <List horizontal>
-                   <EventListAttendee/>
-                   <EventListAttendee/>
-                   <EventListAttendee/>
-                   <EventListAttendee/>
+                   {event.attendess.map(attende => (
+
+<EventListAttendee  attende={attende}  key={attende.id}/>
+                   ))}
                </List>
            </Segment>
-           <Segment>
+           <Segment clearing>
                <span>
-                   Description Of event
+                   {event.description}
                </span>
                <Button color="teal" floated="right" content="view"
-               style={{
-                   marginTop:'-7px'
-               }}
+                 onClick={() => selectEvent(event)}
                />
            </Segment>
        </Segment.Group>

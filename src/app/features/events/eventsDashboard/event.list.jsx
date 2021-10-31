@@ -1,18 +1,12 @@
 import React from 'react';
 import EventListItem from './event.list.item';
 
-const EventListItems = () => {  
+const EventListItems = ({events, selectEvent}) => {  
   return(
       <>
-      <EventListItem/>
-      <EventListItem/>
-      <EventListItem/>
-      <EventListItem/>
-      <EventListItem/>
-      <EventListItem/>
-      <EventListItem/>
-      <EventListItem/>
-      <EventListItem/>
+       {events.map(event => (
+        <EventListItem event={event} key={event.id} selectEvent={selectEvent}/>
+       ))}
 
       </>
   )
